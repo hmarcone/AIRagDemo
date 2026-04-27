@@ -63,6 +63,10 @@ while (true){
 	if(string.IsNullOrWhiteSpace(pergunta))
 		continue;
 
+	// A chamada AskAsync faz a parte de RAG:
+	// 1 - Get Embedding da pergunta
+	// 2 - Busca por chuncks mais similares no armazenamento.
+	// 3 - Envia a pergunta + os chuncks encontrados para o modelo de texto, que gera a resposta.
 	var prompt = $"Responda somente com base nos documentos fornecidos. \n\n Pergunta: {pergunta}";
 
 	var resposta = await memory.AskAsync(prompt);
